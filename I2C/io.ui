@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>718</width>
+    <width>726</width>
     <height>1330</height>
    </rect>
   </property>
@@ -53,7 +53,7 @@
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0">
-          <widget class="QTextBrowser" name="receive_out"/>
+          <widget class="QPlainTextEdit" name="receive_out"/>
          </item>
         </layout>
        </widget>

@@ -9,8 +9,8 @@ Console::Console(QWidget *parent, QString str) :
     ui->setupUi(this);
     ui->console_box->setTitle(Title);
     QPalette p = palette();
-    p.setColor(QPalette::Base, Qt::white);
-    p.setColor(QPalette::Text, Qt::blue);
+    p.setColor(QPalette::Base, Qt::gray);
+    p.setColor(QPalette::Text, Qt::green);
     ui->plainTextEdit->setPalette(p);
 }
 

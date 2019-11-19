@@ -16,11 +16,18 @@ public://explicit
      IO(QWidget *parent = nullptr, QString str = "FT2232_CH1");
     ~IO();
 
+signals:
+    void send_bytes(QString&);
+
+
 private:
     void change_box_name(QString&);
     void init_connections(void);
 
 private slots:
+    void clear_send(void);
+    void clear_receive(void);
+    void receive_bytes(QString&);
     void have_input_byte(void);
     void send_clicked(void);
 

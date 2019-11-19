@@ -35,12 +35,12 @@ FT2232::~FT2232()
 void FT2232::init_connections()
 {
     //Enable/Disable Signal
-    connect(ui->ch1_status, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &FT2232::ch1_en);
-    connect(ui->ch2_status, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &FT2232::ch2_en);
+    connect(ui->ch1_status, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &FT2232::ch1_en);
+    connect(ui->ch2_status, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &FT2232::ch2_en);
 
     //CMD mode signal
-    connect(ui->ch1_uart_cmd, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &FT2232::ch1_cmd);
-    connect(ui->ch2_uart_cmd, QOverload<const QString &>::of(&QComboBox::currentIndexChanged), this, &FT2232::ch2_cmd);
+    connect(ui->ch1_uart_cmd, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &FT2232::ch1_cmd);
+    connect(ui->ch2_uart_cmd, QOverload<const QString &>::of(&QComboBox::currentTextChanged), this, &FT2232::ch2_cmd);
 }
 
 
@@ -121,19 +121,19 @@ void FT2232::ch2_en(const QString& str)
 
 void FT2232::ch1_cmd(const QString& str)
 {
-    if(str == "Disable")
-       change_ch1_window(nullptr);
+    if(str == "Disable"){
+       change_ch1_window(new IO(nullptr, "FT2232_CH1"));
+    }else if(str == "Enable"){
+        change_ch1_window(new Console(nullptr, "FT2232_CH1"));
 
-    if(str == "Enable")
-        change_ch1_window(new IO(nullptr, "FT2232_CH1"));
+    }
 }
 void FT2232::ch2_cmd(const QString& str)
 {
     if(str == "Disable")
-       change_ch1_window(nullptr);
-
-    if(str == "Enable")
-        change_ch1_window(new IO(nullptr, "FT2232_CH1"));
+       change_ch2_window(new IO(nullptr, "FT2232_CH2"));
+    else if(str == "Enable")
+        change_ch2_window(new Console(nullptr, "FT2232_CH2"));
 }
 
 
